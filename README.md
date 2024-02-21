@@ -1,3 +1,4 @@
+                               
 **PROJECT SUMMARY**
 
 I am assuming to be a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s 
