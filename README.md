@@ -53,8 +53,6 @@ better understand how annual members and casual riders differ, why casual riders
 I will use Cyclistic’s historical trip data to analyze and identify trends from Jan 2022 to Dec 2022 which can be downloaded from https://divvy-tripdata.s3.amazonaws.com/index.html.
 
 
-I will be using SQL to explore, organize, clean, and analyze the dataset.
-
 **DATA ORGANIZATION**
 
 I will be using SQL to explore, combine, organize, clean, clean, and analyze the dataset.
@@ -172,14 +170,14 @@ The following table shows the number of null values in each column.
 |    0    |       0       |      0     |   0    |      840006        |      1241364     |      891278      |     1167777    |     0     |     0     |   6751  |   6751  |       0       |
 
 
-Note that the end_lat and the end_lng columns have the same number of missing values. This may be due to missing information in the same row.
+Note that the ```end_lat``` and the ```end_lng``` columns have the same number of missing values. This may be due to missing information in the same row.
 
 The null values that are in each column will be excluded from the new clean dataset that will be used for analysis.
 
 
 ***Checking for Duplicates***
 
-As ride_id has no null values, I used it to check for duplicates.
+As ```ride_id``` has no null values, I used it to check for duplicates.
 
 ```
 Select COUNT(ride_id)-COUNT(DISTINCT ride_id) as Duplicate_rows
@@ -213,19 +211,20 @@ From trip_data
 Where DATEDIFF(minute, started_at, ended_at) < 1;
 ```
 
-There are a total of 86,315 trips that lasted for less than a minute in the data set that will be dropped when creating the clean table for analysis.
+There are a total of ```86,315``` trips that lasted for less than a minute in the data set that will be dropped when creating the clean table for analysis.
 
 - On the other hand, trips lasting more than a day are outliers that are unlikely to represent typical usage patterns, skewing the analysis and potentially leading to inaccurate conclusions.
 
-```Select started_at, ended_at, DATEDIFF(minute, started_at, ended_at) as time_difference
+```
+Select started_at, ended_at, DATEDIFF(minute, started_at, ended_at) as time_difference
 From trip_data
 Where DATEDIFF(minute, started_at, ended_at) > 1440;
 ```
-There are a total of 6,154 trips that lasted more than a day in the data set that will be dropped when creating the clean table for analysis.
+There are a total of ```6,154``` trips that lasted more than a day in the data set that will be dropped when creating the clean table for analysis.
 
 - The ```started_at``` and ```ended_at``` show the start and end time of the trip in ```YYYY-MM-DD hh:mm: ss UTC``` format. A new column, ```ride_length``, which will be in minutes will be created to find the total trip duration. 
 
-Other columns ```day_of_ride```, ``hour_of_the_ride``` and ````month_of_ride``` will also be helpful in the analysis of trips at different times of the year.
+- Other columns ```day_of_ride```, ```hour_of_the_ride``` and ```month_of_ride``` will also be helpful in the analysis of trips at different times of the year.
 
 ***Type of Rider***
 
@@ -253,7 +252,7 @@ Where DATEDIFF(minute, started_at, ended_at) <= 1440 AND DATEDIFF(minute, starte
 
 ***Getting the day and month when the trip was made***
 
-The ```DATENAME``` function helped in extracting the day, month, and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
+The ```DATENAME``` function helped in extracting the ```day, month```, and ```hour of the day``` from the ```started_at``` timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
 
 
 - *Day*
@@ -270,14 +269,14 @@ Select started_at, DATENAME(month, started_at) as month_of_ride
 From trip_data
 ```
 
-*Getting the hour of the day when the ride took place*
+*- Getting the hour of the day when the ride took place*
 
 ```
 Select started_at, DATENAME(hour, started_at) as hour_of_the_day
 From trip_data
 ```
 
-***DATA FORMATTING**
+**DATA FORMATTING**
 
 ***Adding ride_length, day_of_ride, month_of_ride and hour_of_the_day columns to the trip_data table***
 
@@ -412,7 +411,7 @@ Order by rideable_type
 
 - *Months*
 
-This code provides a breakdown of the total number of rides for each month, categorized by member type (member or casual), allowing for analysis of ridership trends over time.
+This code provides a breakdown of the ```total number of rides for each month```, categorized by member type (member or casual), allowing for analysis of ridership trends over time.
 
 ```
 Select month_of_ride, member_casual, COUNT(ride_id) as total_rides
@@ -459,7 +458,7 @@ Order by month_of_ride
 
 *Day of the week*
 
-This code provides a breakdown of the total number of rides for each day of the week, categorized by member type (member or casual).
+This code provides a breakdown of the ```total number of rides for each day of the week```, categorized by member type (member or casual).
 
 ```
 Select day_of_ride, member_casual, COUNT(ride_id) as total_rides
@@ -496,7 +495,7 @@ Order by day_of_ride
 
 *Hour of the day*
 
-This code provides insights into the total ride length in minutes for each hour of the day, categorized by member type (member or casual)
+This code provides insights into the ```total ride length in minutes for each hour of the day```, categorized by member type (member or casual)
 
 ```
 Select member_casual, hour_of_the_day, SUM(ride_length) as avg_ride_length
@@ -562,7 +561,7 @@ Order by hour_of_the_day
 
 - *Day* 
 
-This code provides insights into the average ride length for each day of the week, categorized by member type (member or casual).
+This code provides insights into the ```average ride length for each day of the week```, categorized by member type (member or casual).
 
 ```
 Select day_of_ride, member_casual, AVG(ride_length) as avg_ride_length
@@ -593,7 +592,7 @@ Order by day_of_ride
 
 - *Month*
 
-This code provides insights into the average ride length for each month, categorized by member type (member or casual).
+This code provides insights into the ```average ride length for each month```, categorized by member type (member or casual).
 
 ```
 Select month_of_ride, member_casual, AVG(ride_length) as avg_ride_length
@@ -633,7 +632,7 @@ Order by month_of_ride
 
 - *Hour of the day*
 
-This code provides insights into the average ride length for each hour of the day, categorized by member type (member or casual).
+This code provides insights into the ```average ride length for each hour of the day```, categorized by member type (member or casual).
 
 ```
 Select hour_of_the_day, member_casual, AVG(ride_length) as avg_ride_length
@@ -707,7 +706,8 @@ Overall, casual riders tend to have longer average ride lengths compared to memb
 
 ***4. Starting and ending locations***
 
-To further understand the differences between casual and member riders, the locations of starting and ending stations can be analyzed. 
+To further understand the differences between casual and member riders, the locations of ```starting``` and ```ending stations``` were analyzed. 
+
 Stations with the most trips are considered using filters to draw out the following conclusions.
 
 *- Starting station locations*
@@ -776,19 +776,28 @@ By having a membership, they can avoid the hassle of purchasing single passes ea
 
 
 
-ACT
+**ACT**
 
 In this section, I answered the third objective question;
-How can Cyclistic use digital media to influence casual riders to become members?
+***How can Cyclistic use digital media to influence casual riders to become members?***
 
 
-- ***Targeted Social Media Campaigns:** Cyclistic can leverage digital media platforms like Facebook, Instagram, and Twitter to run targeted advertising campaigns.
-  Ads can highlight the benefits of membership, such as exclusive access to bikes near universities, residential areas, and commercial centers, areas where casual riders often
+ ***- Targeted Social Media Campaigns** 
+ Cyclistic can leverage digital media platforms like Facebook, Instagram, and Twitter to run targeted advertising campaigns.
+ 
+Ads can highlight the benefits of membership, such as exclusive access to bikes near universities, residential areas, and commercial centers, areas where casual riders often
  start and end their trips.
 
-Personalized Email Marketing: Cyclistic can send personalized email campaigns to casual riders based on their ride patterns, emphasizing the convenience and cost-effectiveness of membership for frequent riders. By showcasing how members can easily access bikes near popular recreational spots like parks and museums, Cyclistic can encourage casual riders to make the switch.
+***- Personalized Email Marketing*** 
+Cyclistic can send personalized email campaigns to casual riders based on their ride patterns, emphasizing the convenience and cost-effectiveness of membership for frequent riders. By showcasing how members can easily access bikes near popular recreational spots like parks and museums, Cyclistic can encourage casual riders to make the switch.
 
-In-App Promotions and Rewards: Cyclistic's mobile app can feature special promotions and rewards exclusively for casual riders who convert to members. For example, offering discounts on membership fees or free ride credits for completing a certain number of rides can incentivize casual riders to become members. Additionally, highlighting member-exclusive starting and ending locations, such as near universities and commercial areas, can further encourage conversion.
+***- In-App Promotions and Rewards:*** 
+Cyclistic's mobile app can feature special promotions and rewards exclusively for casual riders who convert to members. 
+
+For example, offering discounts on membership fees or free ride credits for completing a certain number of rides can incentivize casual riders to become members.
+
+Additionally, highlighting member-exclusive starting and ending locations, such as near universities and commercial areas, can further encourage conversion.
+
 After identifying the differences between casual and member riders, marketing strategies to target casual riders can be developed to persuade them to become members.
 Recommendations:
 
