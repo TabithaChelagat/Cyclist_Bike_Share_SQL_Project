@@ -391,18 +391,62 @@ This code retrieves data from the ```yearly_bike_data``` table, counts the numbe
 | electric_bike | casual        | 495713  |
 
 
+![226692931-ecd2eb32-ffce-481a-b3c2-a6c3b4f3ceb7](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/c7fec0c2-1920-4836-ae05-395a343c7077)
+
+
 Summary of the ridership data:
 
 The members make 59.7% of the total while the remaining 40.3% constitute casual riders. 
 Each bike-type chart shows a percentage of the total. 
 The most used bike is the classic bike followed by the electric bike. Docked bikes are used the least by casual riders.
 
-![226692931-ecd2eb32-ffce-481a-b3c2-a6c3b4f3ceb7](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/f453dda2-d077-4a74-ac7f-6d6055c19a9a)
+
+Number of trips distributed by the months, days of the week, and hours of the day.
+
+Months
+
+```
+Select month_of_ride, member_casual, COUNT(ride_id) as total_rides
+From yearly_bike_data
+Group by month_of_ride, member_casual
+Order by month_of_ride
+```
+ This code provides a breakdown of the total number of rides for each month, categorized by member type (member or casual), allowing for analysis of ridership trends over time.
+
+| month_of_ride | member_casual | total_rides |
+|---------------|---------------|-------------|
+| April         | member        | 209,412     |
+| April         | casual        | 109,147     |
+| August        | casual        | 231,783     |
+| August        | member        | 347,064     |
+| February      | casual        | 32,407      |
+| February      | member        | 114,895     |
+| January       | casual        | 29,276      |
+| January       | member        | 116,718     |
+| July          | member        | 324,733     |
+| July          | casual        | 242,893     |
+| June          | casual        | 217,570     |
+| June          | member        | 311,311     |
+| March         | casual        | 22,221      |
+| March         | member        | 64,394      |
+| May           | member        | 60,594      |
+| May           | casual        | 49,141      |
+| November      | member        | 200,664     |
+| November      | casual        | 71,522      |
+| October       | member        | 270,642     |
+| October       | casual        | 129,178     |
+| September     | member        | 306,421     |
+| September     | casual        | 195,284     |
 
 
-Next, the number of trips distributed by the months, days of the week and hours of the day are examined.
+![230122705-2f157258-e673-4fc5-bbed-88050b6aae68 (1)](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/b4a02fe5-b3e3-4d72-8f16-ff81e99deac7)
 
-image image
+
+Summary of findings:
+January, February, and March represent winter months, characterized by lower ridership, while May, June, July, and August are summer months with higher ridership, especially among members who may use bikes for recreational purposes. Similarly, the transitional months of April, September, October, and November exhibit varying ridership levels as weather conditions shift between seasons.
+
+
+
 
 Months: When it comes to monthly trips, both casual and members exhibit comparable behavior, with more trips in the spring and summer and fewer in the winter. The gap between casuals and members is closest in the month of july in summmer.
 Days of Week: When the days of the week are compared, it is discovered that casual riders make more journeys on the weekends while members show a decline over the weekend in contrast to the other days of the week.
