@@ -214,7 +214,7 @@ From trip_data
 Where DATEDIFF(minute, started_at, ended_at) < 1;
 ```
 
-There are a total of 86,315 trips that lasted for less than a minute in the data set that will be excluded during analysis.
+There are a total of 86,315 trips that lasted for less than a minute in the data set that will be dropped when creating the clean table for analysis.
 
 On the other hand, trips lasting more than a day are outliers that are unlikely to represent typical usage patterns, skewing the analysis and potentially leading to inaccurate conclusions.
 
@@ -222,28 +222,90 @@ On the other hand, trips lasting more than a day are outliers that are unlikely 
 From trip_data
 Where DATEDIFF(minute, started_at, ended_at) > 1440;
 ```
-There are a total of 6,154 trips that lasted more than a day in the data set that will be excluded during analysis.
+There are a total of 6,154 trips that lasted more than a day in the data set that will be dropped when creating the clean table for analysis.
 
 The started_at and ended_at show the start and end time of the trip in YYYY-MM-DD hh:mm: ss UTC format. A new column, ```ride_length``, which will be in minutes will be created to find the
 total trip duration. 
 
 Other columns ```day_of_ride```, ``hour_of_the_ride``` and ````month_of_ride``` will also be helpful in the analysis of trips at different times of the year.
 
+Type of rider
+
+member_casual column has 2 unique values classifying the riders as either member or ccasual.
+
+| member_casual |
+|---------------|
+|    3488296    |
+|    2007507    |
 
 
-member_casual column has 2 uniqued values as member or casual rider.
 
-image
+DATA CLEANING
 
-Columns that need to be removed are start_station_id and end_station_id as they do not add value to analysis of our current problem. Longitude and latitude location columns may not be used in analysis but can be used to visualise a map.
+Getting the time difference excluding the ones > 24 hours and < 1 minute
 
-Data Cleaning
-SQL Query: Data Cleaning
+```
+Select started_at, ended_at, DATEDIFF(minute, started_at, ended_at) as ride_length
+From trip_data
+Where DATEDIFF(minute, started_at, ended_at) <= 1440 AND DATEDIFF(minute, started_at, ended_at) >= 1;
+```
 
-All the rows having missing values are deleted.
-3 more columns ride_length for duration of the trip, day_of_week and month are added.
-Trips with duration less than a minute and longer than a day are excluded.
-Total 1,375,912 rows are removed in this step.
+I utilized the ```DATEDIFF``` function to calculate the length of each ride in minutes by subtracting the started_at timestamp from the ended_at timestamp.
+Additionally, the ```WHERE``` clause filters the results to include only rides that lasted between 1 minute and 1440 minutes (24 hours), ensuring that only meaningful ride lengths are considered for analysis.
+
+Getting the day and month when the trip was made
+
+Day
+
+```
+Select started_at, DATENAME(weekday, started_at) as day_of_ride
+From trip_data
+```
+
+Month
+
+```
+Select started_at, DATENAME(month, started_at) as month_of_ride
+From trip_data
+```
+
+Getting the hour of the day when the ride took place
+
+```
+Select started_at, DATENAME(hour, started_at) as hour_of_the_day
+From trip_data
+```
+The ```DATENAME``` function helped in extracting the day, month and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
+
+
+Adding ride_length, day_of_ride, month_of_ride and hour_of_the_day columns to the trip_data table.
+
+ride_length
+
+```
+
+```
+
+day_of_ride
+
+```
+
+```
+
+month_of_ride
+
+```
+
+```
+
+hour_of_the_day
+
+```
+
+```
+
+
+
 Analyze and Share
 SQL Query: Data Analysis
 Data Visualization: Tableau
