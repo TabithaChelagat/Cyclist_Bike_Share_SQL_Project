@@ -725,7 +725,6 @@ Order by total_rides DESC
 
 A similar trend can be observed in ending station locations. Casual riders end their journey near parks, museums, and other recreational sites whereas members end their trips close to universities, residential and commercial areas. 
 
-This proves that casual riders use bikes for leisure activities while members extensively rely on them for daily commutes.
 
 Data analysis summary:
 
@@ -736,16 +735,45 @@ Data analysis summary:
 | Start and end their journeys near parks, museums, along the coast, and other recreational sites.                       | Start and end their trips close to universities, residential, and commercial areas.                          |
 
 
+CONCLUSION ON BIKE USAGE ANALYSIS
+
+Based on the provided data, here are four overall conclusions on how members and casual riders use bikes differently:
+
+Usage Patterns: Members exhibit a more consistent and regular usage pattern compared to casual riders. This is evidenced by the higher total rides per day, hour, and month for members, indicating a greater frequency of bike usage throughout different timescales.
+
+Trip Duration: Casual riders tend to have shorter average ride lengths per day, hour, and month compared to members. This suggests that casual riders typically use bikes for shorter, more spontaneous trips, while members may engage in longer, planned rides or use bikes for commuting purposes.
+
+Starting Location Preferences: Casual riders often begin their journeys near recreational sites such as museums, parks, beaches, and aquariums, indicating a preference for leisure activities. In contrast, members tend to start their rides near universities, residential areas, restaurants, and commercial centers, suggesting a focus on commuting or accessing essential services and amenities.
+
+Ending Location Preferences: Similar to their starting location preferences, casual riders frequently end their trips near parks, museums, and recreational sites, reinforcing their preference for leisurely activities. Conversely, members tend to end their rides near universities, residential areas, and commercial centers, indicating a return to familiar or essential destinations after commuting or running errands.
+
+Overall, these conclusions highlight the distinct usage patterns and preferences of members and casual riders, with members demonstrating a more structured and commuter-oriented approach, while casual riders prioritize leisure and spontaneous trips.
+
+WHY WOULD CASUAL RIDERS BUY CYCLIST ANNUAL MEMBERSHIP?
+
+To answer the second objective question for this project, I used the data analysis findings that I had done.
+
+- Convenience and Cost Savings: While casual riders typically prefer starting and ending their trips at recreational spots, they may find that having an annual membership offers them convenience and cost savings, especially if they frequently use the service during peak hours or months. 
+
+By having a membership, they can avoid the hassle of purchasing single passes each time they ride, and they may benefit from discounted rates or bundled pricing options, making it more economical for them in the long run.
+
+- Access to Additional Benefits: Cyclistic may offer additional benefits or perks to annual members beyond just access to the bikes. These could include things like priority access to certain bikes or stations, special events or promotions, or partnerships with local businesses or attractions. Casual riders who enjoy the flexibility of riding to recreational sites may still find value in these membership perks, especially if they also use the bikes for other purposes like commuting or running errands.
 
 
-Casual	Member
-Prefer using bikes throughout the day, more frequently over the weekends in summer and spring for leisure activities.	Prefer riding bikes on week days during commute hours (8 am / 5pm) in summer and spring.
-Travel 2 times longer but less frequently than members.	Travel more frequently but shorter rides (approximately half of casual riders' trip duration).
-Start and end their journeys near parks, museums, along the coast and other recreational sites.	Start and end their trips close to universities, residential and commercial areas.
-Act
+
+ACT
+
+In this section, I answered the third objective question;
+How can Cyclistic use digital media to influence casual riders to become members?
+
+
+- ***Targeted Social Media Campaigns:** Cyclistic can leverage digital media platforms like Facebook, Instagram, and Twitter to run targeted advertising campaigns.
+  Ads can highlight the benefits of membership, such as exclusive access to bikes near universities, residential areas, and commercial centers, areas where casual riders often
+ start and end their trips.
+
+Personalized Email Marketing: Cyclistic can send personalized email campaigns to casual riders based on their ride patterns, emphasizing the convenience and cost-effectiveness of membership for frequent riders. By showcasing how members can easily access bikes near popular recreational spots like parks and museums, Cyclistic can encourage casual riders to make the switch.
+
+In-App Promotions and Rewards: Cyclistic's mobile app can feature special promotions and rewards exclusively for casual riders who convert to members. For example, offering discounts on membership fees or free ride credits for completing a certain number of rides can incentivize casual riders to become members. Additionally, highlighting member-exclusive starting and ending locations, such as near universities and commercial areas, can further encourage conversion.
 After identifying the differences between casual and member riders, marketing strategies to target casual riders can be developed to persuade them to become members.
 Recommendations:
 
-Marketing campaigns might be conducted in spring and summer at tourist/recreational locations popular among casual riders.
-Casual riders are most active on weekends and during the summer and spring, thus they may be offered seasonal or weekend-only memberships.
-Casual riders use their bikes for longer durations than members. Offering discounts for longer rides may incentivize casual riders and entice members to ride for longer periods of time.
