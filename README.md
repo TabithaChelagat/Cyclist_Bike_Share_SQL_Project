@@ -53,11 +53,11 @@ better understand how annual members and casual riders differ, why casual riders
 I will use Cyclistic’s historical trip data to analyze and identify trends from Jan 2022 to Dec 2022 which can be downloaded from https://divvy-tripdata.s3.amazonaws.com/index.html.
 
 
-**DATA ANALYSIS**
-
 I will be using SQL to explore, organize, clean, and analyze the dataset.
 
-**Data Organization**
+**DATA ORGANIZATION**
+
+I will be using SQL to explore, combine, organize, clean, clean, and analyze the dataset.
 
 There are 11 CSV files with the naming convention of ```YYYY-MM-divvy-tripdata``` and each file contains data for one month.
 
@@ -85,7 +85,7 @@ This table provides a clear overview of the column names and their corresponding
 | hour_of_the_day   | Hour of the day when the ride started                                          |
 
 
-***Data Combination***
+**DATA COMBINATION**
 
 The 11 CSV files were successfully uploaded to the SQL database and merged into a single table, ```trip_data```,  consolidating the yearly data. Utilizing the ```CREATE TABLE``` function, I created a table with 17 columns, specifying the data type that each column will hold to ensure accurate data representation and integrity within the database.
 
@@ -142,11 +142,11 @@ To resolve the inconsistency in data types between the ```station_station_id``` 
 
 The ```CAST``` function is used to convert an expression of one data type to another. In this context, I employed it to convert the float data type to ```nvarchar(255)```. 
 
-***Data Exploration***
+**DATA EXPLORATION**
 
 Before cleaning the data, I familiarized myself with the data to identify if there were any nulls and duplicates and to get an insight of the data stored in each column.
 
-*Checking for Nulls*
+***Checking for Nulls***
 
 In this code, the ```COUNT``` function is used to check for null values in each column of the ```trip_data``` table.
 ```
@@ -177,7 +177,7 @@ Note that the end_lat and the end_lng columns have the same number of missing va
 The null values that are in each column will be excluded from the new clean dataset that will be used for analysis.
 
 
-*Checking for Duplicates*
+***Checking for Duplicates***
 
 As ride_id has no null values, I used it to check for duplicates.
 
@@ -193,7 +193,7 @@ From trip_data
 
 There are no duplicate rows in the data.
 
-*Checking Types of Bikes*
+***Checking Types of Bikes***
 
 There are 3 unique types of bikes(rideable_type) in our data.
 
@@ -203,7 +203,7 @@ There are 3 unique types of bikes(rideable_type) in our data.
 | classic_bike  |
 | docked_bike   |
 
-*Trip Duration* 
+***Trip Duration***
 
 - Trips lasting under a minute are likely indicative of system errors or test rides rather than genuine user activity, providing little meaningful insight into user behavior. 
 
@@ -227,7 +227,7 @@ There are a total of 6,154 trips that lasted more than a day in the data set tha
 
 Other columns ```day_of_ride```, ``hour_of_the_ride``` and ````month_of_ride``` will also be helpful in the analysis of trips at different times of the year.
 
-```Type of Rider```
+***Type of Rider***
 
 member_casual column has 2 unique values classifying the riders as either member or ccasual.
 
@@ -238,9 +238,9 @@ member_casual column has 2 unique values classifying the riders as either member
 
 
 
-***Data Cleaning***
+**DATA CLEANING**
 
-*Getting the time difference excluding the ones > 24 hours and < 1 minute*
+***Getting the time difference excluding the ones > 24 hours and < 1 minute***
 
 I utilized the ```DATEDIFF``` function to calculate the length of each ride in minutes by subtracting the ```started_at``` timestamp from the ```ended_at``` timestamp.
 Additionally, the ```WHERE``` clause filters the results to include only rides that lasted between 1 minute and 1440 minutes (24 hours), ensuring that only meaningful ride lengths are considered for analysis.
@@ -251,7 +251,7 @@ From trip_data
 Where DATEDIFF(minute, started_at, ended_at) <= 1440 AND DATEDIFF(minute, started_at, ended_at) >= 1;
 ```
 
-*Getting the day and month when the trip was made*
+***Getting the day and month when the trip was made***
 
 The ```DATENAME``` function helped in extracting the day, month, and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
 
@@ -276,12 +276,17 @@ From trip_data
 Select started_at, DATENAME(hour, started_at) as hour_of_the_day
 From trip_data
 ```
-The ```DATENAME``` function helped in extracting the day, month, and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
+
+***DATA FORMATTING**
+
+***Adding ride_length, day_of_ride, month_of_ride and hour_of_the_day columns to the trip_data table***
+
+The ```ALTER TABLE``` function was used to add four new columns ```(ride_length, day_of_ride, month_of_ride, hour_of_the_day)``` to the trip_data table, specifying their data types. 
+
+Then, the ```UPDATE``` function was utilized to populate these new columns with data derived from existing columns.
 
 
-Adding ride_length, day_of_ride, month_of_ride and hour_of_the_day columns to the trip_data table.
-
-ride_length
+- *ride_length*
 
 ```
 ALTER TABLE trip_data
@@ -292,7 +297,7 @@ Set ride_length = DATEDIFF(minute, started_at, ended_at)
 
 ```
 
-day_of_ride
+- *day_of_ride*
 
 ```
 ALTER TABLE trip_data
@@ -302,7 +307,7 @@ UPDATE trip_data
 Set day_of_ride = DATENAME(weekday, started_at)
 ```
 
-month_of_ride
+- *month_of_ride*
 
 ```
 ALTER TABLE trip_data
@@ -312,7 +317,7 @@ UPDATE trip_data
 Set month_of_ride = DATENAME(month, started_at)
 ```
 
-hour_of_the_day
+- *hour_of_the_day*
 
 ```
 ALTER TABLE trip_data
@@ -323,14 +328,12 @@ Set hour_of_the_day = DATENAME(hour, started_at)
 
 ```
 
-The ```ALTER TABLE``` function was used to add four new columns (ride_length, day_of_ride, month_of_ride, hour_of_the_day) to the trip_data table, specifying their data types. 
 
-Then, the ```UPDATE``` function was utilized to populate these new columns with data derived from existing columns.
+***Creating a new table, with clean data***
 
+After formatting the data, I created a new table, ```yearly_bike_data```, intended for analysis purposes. This table comprises clean data, including the new four columns, ride_length, day_of_ride, month_of_ride, hour_of_the_day, and excluding all null values, trips lasting more than a day, and trips lasting less than a minute. 
 
-Creating a new table with clean data
-
-After formatting the data, I created a new table, yearly_bike_data, intended for analysis purposes. This table comprises clean data, including the new four columns, ride_length, day_of_ride, month_of_ride, hour_of_the_day, and excluding all null values, trips lasting more than a day, and trips lasting less than a minute. I adopt the practice of avoiding the deletion of data from the main table during project work to maintain data integrity. This ensures that critical information remains intact, allowing for further analysis without the risk of losing or altering essential columns in the main dataset.
+I adopt the practice of avoiding the deletion of data from the main table during project work to maintain data integrity. This ensures that critical information remains intact, allowing for further analysis without the risk of losing or altering essential columns in the main dataset.
 
 ```
 DROP TABLE IF EXISTS yearly_bike_data
@@ -370,12 +373,12 @@ Where start_station_name IS NOT NULL AND
 I now had clean data ready for data analysis.
 
 
-DATA ANALYSIS
+**DATA ANALYSIS**
 
 For the first part of the analysis, the question that the data will be answering is;
-How do annual members and casual riders use Cyclistic bikes differently?
+***How do annual members and casual riders use Cyclistic bikes differently?***
 
-Number of rides made by member and casual riders
+*Number of rides made by member and casual riders*
 
 This code retrieves data from the ```yearly_bike_data``` table, counts the number of riders for each combination of ```rideable_type``` and ```member_casual```, and then organizes the results by rideable_type.
 
