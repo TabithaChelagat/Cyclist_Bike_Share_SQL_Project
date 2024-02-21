@@ -546,29 +546,197 @@ Analysis of the patterns reveals differences in riding behavior between members 
 
 
 
+Average trip duration for members and casuals per month, day of the week and hour of the day
 
-We can infer from the previous observations that member may be using bikes for commuting to and from the work in the week days while casual riders are using bikes throughout the day, more frequently over the weekends for leisure purposes. Both are most active in summer and spring.
+Day 
 
-Ride duration of the trips are compared to find the differences in the behavior of casual and member riders.
+This code provides insights into the average ride length for each day of the week, categorized by member type (member or casual).
 
-image
-image
+```
+Select day_of_ride, member_casual, AVG(ride_length) as avg_ride_length
+From yearly_bike_data
+Group by day_of_ride, member_casual
+Order by day_of_ride
+```
+| day_of_ride | member_casual | avg_ride_length |
+|-------------|---------------|-----------------|
+| Monday      | member        | 11              |
+| Monday      | casual        | 22              |
+| Tuesday     | member        | 11              |
+| Tuesday     | casual        | 20              |
+| Wednesday   | member        | 11              |
+| Wednesday   | casual        | 19              |
+| Thursday    | member        | 11              |
+| Thursday    | casual        | 20              |
+| Friday      | member        | 12              |
+| Friday      | casual        | 22              |
+| Saturday    | member        | 13              |
+| Saturday    | casual        | 26              |
+| Sunday      | member        | 13              |
+| Sunday      | casual        | 26              |
 
-Take note that casual riders tend to cycle longer than members do on average. The length of the average journey for members doesn't change throughout the year, week, or day. However, there are variations in how long casual riders cycle. In the spring and summer, on weekends, and from 10 am to 2 pm during the day, they travel greater distances. Between five and eight in the morning, they have brief trips.
 
-These findings lead to the conclusion that casual commuters travel longer (approximately 2x more) but less frequently than members. They make longer journeys on weekends and during the day outside of commuting hours and in spring and summer season, so they might be doing so for recreation purposes.
+![230164787-3ea46ee9-aa5f-486b-9dd1-8f43dfce8e1c (2)](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/9f1adcc0-71be-465a-ac45-aba549060f8c)
 
-To further understand the differences in casual and member riders, locations of starting and ending stations can be analysed. Stations with the most trips are considered using filters to draw out the following conclusions.
 
-image
+Month
 
-Casual riders have frequently started their trips from the stations in vicinity of museums, parks, beach, harbor points and aquarium while members have begun their journeys from stations close to universities, residential areas, restaurants, hospitals, grocery stores, theatre, schools, banks, factories, train stations, parks and plazas.
+This code provides insights into the average ride length for each month, categorized by member type (member or casual).
 
-image
+```
+Select month_of_ride, member_casual, AVG(ride_length) as avg_ride_length
+From yearly_bike_data
+Group by month_of_ride, member_casual
+Order by month_of_ride
+```
 
-Similar trend can be observed in ending station locations. Casual riders end their journay near parks, museums and other recreational sites whereas members end their trips close to universities, residential and commmercial areas. So this proves that casual riders use bikes for leisure activities while members extensively rely on them for daily commute.
+| month_of_ride | member_casual | avg_ride_length |
+|---------------|---------------|-----------------|
+| January       | member        | 10              |
+| January       | casual        | 15              |
+| February      | member        | 10              |
+| February      | casual        | 17              |
+| March         | member        | 10              |
+| March         | casual        | 17              |
+| April         | member        | 11              |
+| April         | casual        | 22              |
+| May           | member        | 13              |
+| May           | casual        | 27              |
+| June          | member        | 13              |
+| June          | casual        | 24              |
+| July          | member        | 13              |
+| July          | casual        | 25              |
+| August        | member        | 13              |
+| August        | casual        | 24              |
+| September     | member        | 12              |
+| September     | casual        | 23              |
+| October       | member        | 11              |
+| October       | casual        | 21              |
+| November      | member        | 11              |
+| November      | casual        | 17              |
 
-Summary:
+
+![230164787-3ea46ee9-aa5f-486b-9dd1-8f43dfce8e1c (1) (1)](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/3cd6d68a-f7a7-4d3a-9066-b690d5513045)
+
+
+Hour of the day
+
+This code provides insights into the average ride length for each hour of the day, categorized by member type (member or casual).
+```
+Select hour_of_the_day, member_casual, AVG(ride_length) as avg_ride_length
+From yearly_bike_data
+Group by hour_of_the_day, member_casual
+Order by member_casual DESC
+```
+
+| hour_of_the_day | member_casual | avg_ride_length |
+|-----------------|---------------|-----------------|
+| 0               | member        | 11              |
+| 0               | casual        | 21              |
+| 1               | casual        | 21              |
+| 1               | member        | 12              |
+| 2               | casual        | 21              |
+| 2               | member        | 12              |
+| 3               | casual        | 21              |
+| 3               | member        | 13              |
+| 4               | member        | 12              |
+| 4               | casual        | 18              |
+| 5               | member        | 10              |
+| 5               | casual        | 15              |
+| 6               | member        | 10              |
+| 6               | casual        | 16              |
+| 7               | casual        | 15              |
+| 7               | member        | 11              |
+| 8               | member        | 11              |
+| 8               | casual        | 17              |
+| 9               | member        | 11              |
+| 9               | casual        | 23              |
+| 10              | member        | 12              |
+| 10              | casual        | 27              |
+| 11              | member        | 12              |
+| 11              | casual        | 28              |
+| 12              | casual        | 27              |
+| 12              | member        | 12              |
+| 13              | member        | 12              |
+| 13              | casual        | 26              |
+| 14              | casual        | 26              |
+| 14              | member        | 12              |
+| 15              | casual        | 25              |
+| 15              | member        | 12              |
+| 16              | casual        | 22              |
+| 16              | member        | 12              |
+| 17              | casual        | 21              |
+| 17              | member        | 13              |
+| 18              | casual        | 21              |
+| 18              | member        | 13              |
+| 19              | member        | 12              |
+| 19              | casual        | 21              |
+| 20              | casual        | 21              |
+| 20              | member        | 12              |
+| 21              | casual        | 20              |
+| 21              | member        | 12              |
+| 22              | casual        | 20              |
+| 22              | member        | 12              |
+| 23              | member        | 12              |
+| 23              | casual        | 20              |
+
+
+![230164889-1c7943d2-7ada-411b-adc7-a043eb480ba1](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/2591583a-4e94-4507-ba03-cd43379699e3)
+
+
+Summary of findings:
+
+The average ride length varies throughout the day, with casual riders generally taking longer trips compared to members during all hours. Additionally, there are fluctuations in average ride lengths across different months, with longer rides observed during warmer months. 
+
+The length of the average journey for members doesn't change throughout the year, week, or day. However, there are variations in how long casual riders cycle
+
+Overall, casual riders tend to have longer average ride lengths compared to members, regardless of the time of day or month.
+
+
+To further understand the differences between casual and member riders, the locations of starting and ending stations can be analyzed. 
+Stations with the most trips are considered using filters to draw out the following conclusions.
+
+Starting station locations
+
+```
+Select start_station_name, member_casual,COUNT(ride_id) as total_rides	
+From yearly_bike_data
+Group by start_station_name, member_casual
+Order by total_rides DESC
+```
+
+![230248445-3fe69cbb-30a9-42c6-b5e8-ab433a620ff3](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/46e1b33b-da35-49ea-9ca3-b87171ec7d48)
+
+
+Casual riders have frequently started their trips from the stations in the vicinity of museums, parks, beaches, harbor points, and aquariums while members have begun their journeys from stations close to universities, residential areas, restaurants, hospitals, grocery stores, theatre, schools, banks, factories, train stations, parks and plazas.
+
+Ending station locations
+
+```
+Select end_station_name, member_casual, COUNT(ride_id) as total_rides
+From yearly_bike_data
+Group by end_station_name, member_casual
+Order by total_rides DESC
+```
+
+![230253219-4fb8a2ed-95e3-4e52-a359-9d86945b7a75](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/8bf392a6-8f36-4d98-a145-034f0fab333c)
+
+
+
+A similar trend can be observed in ending station locations. Casual riders end their journey near parks, museums, and other recreational sites whereas members end their trips close to universities, residential and commercial areas. 
+
+This proves that casual riders use bikes for leisure activities while members extensively rely on them for daily commutes.
+
+Data analysis summary:
+
+| Casual                                                                                                                   | Member                                                                                                         |
+|--------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| Prefer using bikes throughout the day, more frequently over the weekends in summer and spring for leisure activities.    | Prefer riding bikes on weekdays during commute hours (8 am / 5 pm) in summer and spring.                       |
+| Travel 2 times longer but less frequently than members.                                                                  | Travel more frequently but shorter rides (approximately half of casual riders' trip duration).                |
+| Start and end their journeys near parks, museums, along the coast, and other recreational sites.                       | Start and end their trips close to universities, residential, and commercial areas.                          |
+
+
+
 
 Casual	Member
 Prefer using bikes throughout the day, more frequently over the weekends in summer and spring for leisure activities.	Prefer riding bikes on week days during commute hours (8 am / 5pm) in summer and spring.
