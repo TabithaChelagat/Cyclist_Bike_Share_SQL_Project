@@ -374,13 +374,15 @@ For the first part of the analysis, the question that the data will be answering
 How do annual members and casual riders use Cyclistic bikes differently?
 
 Number of rides made by member and casual riders
+
+This code retrieves data from the ```yearly_bike_data``` table, counts the number of riders for each combination of ```rideable_type``` and ```member_casual```, and then organizes the results by rideable_type.
+
 ```
 Select rideable_type, member_casual, COUNT(member_casual) as riders
 From yearly_bike_data
 Group by rideable_type, member_casual
 Order by rideable_type
 ```
-This code retrieves data from the ```yearly_bike_data``` table, counts the number of riders for each combination of ```rideable_type``` and ```member_casual```, and then organizes the results by rideable_type.
 
 | rideable_type | member_casual | riders  |
 |---------------|---------------|---------|
@@ -401,9 +403,11 @@ Each bike-type chart shows a percentage of the total.
 The most used bike is the classic bike followed by the electric bike. Docked bikes are used the least by casual riders.
 
 
-Number of trips distributed by the months, days of the week, and hours of the day.
+Total number of trips distributed by the months, days of the week, and hours of the day.
 
 Months
+
+This code provides a breakdown of the total number of rides for each month, categorized by member type (member or casual), allowing for analysis of ridership trends over time.
 
 ```
 Select month_of_ride, member_casual, COUNT(ride_id) as total_rides
@@ -411,32 +415,32 @@ From yearly_bike_data
 Group by month_of_ride, member_casual
 Order by month_of_ride
 ```
- This code provides a breakdown of the total number of rides for each month, categorized by member type (member or casual), allowing for analysis of ridership trends over time.
-
+ 
 | month_of_ride | member_casual | total_rides |
 |---------------|---------------|-------------|
+| January       | member        | 116,718     |
+| January       | casual        | 29,276      |
+| February      | member        | 114,895     |
+| February      | casual        | 32,407      |
+| March         | member        | 64,394      |
+| March         | casual        | 22,221      |
 | April         | member        | 209,412     |
 | April         | casual        | 109,147     |
-| August        | casual        | 231,783     |
-| August        | member        | 347,064     |
-| February      | casual        | 32,407      |
-| February      | member        | 114,895     |
-| January       | casual        | 29,276      |
-| January       | member        | 116,718     |
-| July          | member        | 324,733     |
-| July          | casual        | 242,893     |
-| June          | casual        | 217,570     |
-| June          | member        | 311,311     |
-| March         | casual        | 22,221      |
-| March         | member        | 64,394      |
 | May           | member        | 60,594      |
 | May           | casual        | 49,141      |
-| November      | member        | 200,664     |
-| November      | casual        | 71,522      |
-| October       | member        | 270,642     |
-| October       | casual        | 129,178     |
+| June          | member        | 311,311     |
+| June          | casual        | 217,570     |
+| July          | member        | 324,733     |
+| July          | casual        | 242,893     |
+| August        | member        | 347,064     |
+| August        | casual        | 231,783     |
 | September     | member        | 306,421     |
 | September     | casual        | 195,284     |
+| October       | member        | 270,642     |
+| October       | casual        | 129,178     |
+| November      | member        | 200,664     |
+| November      | casual        | 71,522      |
+                                 
 
 
 ![230122705-2f157258-e673-4fc5-bbed-88050b6aae68 (1)](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/b4a02fe5-b3e3-4d72-8f16-ff81e99deac7)
@@ -445,12 +449,103 @@ Order by month_of_ride
 Summary of findings:
 January, February, and March represent winter months, characterized by lower ridership, while May, June, July, and August are summer months with higher ridership, especially among members who may use bikes for recreational purposes. Similarly, the transitional months of April, September, October, and November exhibit varying ridership levels as weather conditions shift between seasons.
 
+Day
+
+This code provides a breakdown of the total number of rides for each day of the week, categorized by member type (member or casual).
+
+```
+Select day_of_ride, member_casual, COUNT(ride_id) as total_rides
+From yearly_bike_data
+Group by day_of_ride, member_casual
+Order by day_of_ride
+```
+
+|   Day     | Member/Casual | Total Rides |
+|-----------|---------------|-------------|
+|  Monday   |     Member    |   323,981   |
+|  Monday   |     Casual    |   151,888   |
+|  Tuesday  |     Member    |   369,561   |
+|  Tuesday  |     Casual    |   154,344   |
+| Wednesday |     Member    |   367,526   |
+| Wednesday |     Casual    |   154,872   |
+|  Thursday |     Member    |   376,054   |
+|  Thursday |     Casual    |   172,338   |
+|   Friday  |     Member    |   333,650   |
+|   Friday  |     Casual    |   200,435   |
+| Saturday  |     Member    |   297,107   |
+| Saturday  |     Casual    |   275,580   |
+|   Sunday  |     Member    |   258,969   |
+|   Sunday  |     Casual    |   220,965   |
+
+
+![230122705-2f157258-e673-4fc5-bbed-88050b6aae68 (2)](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/0adbb102-6910-4005-a75d-a89b3f4c4033)
+
+Summary of findings:
+
+Analyzing these patterns, I observed correlations between working hours and weekends. For instance, higher ridership among members is seen on weekdays such as Monday, Tuesday, and Thursday, suggesting regular commuting patterns. Conversely, weekends, especially Saturday and Sunday, exhibit higher ridership among casual riders, indicating leisure or recreational use. Additionally, midweek ridership remains relatively consistent, likely reflecting a mix of commuting and leisure activities.
+
+Hour of the day
+
+This code provides insights into the total ride length in minutes for each hour of the day, categorized by member type (member or casual)
+
+```
+Select member_casual, hour_of_the_day, SUM(ride_length) as avg_ride_length
+From yearly_bike_data
+Group by hour_of_the_day, member_casual
+Order by hour_of_the_day
+```
+| member_casual | hour_of_the_day | avg_ride_length |
+|---------------|-----------------|-----------------|
+| member        | 0               | 2,381,666       |
+| casual        | 0               | 4,631,300       |
+| casual        | 1               | 2,994,250       |
+| member        | 1               | 1,426,800       |
+| casual        | 2               | 1,749,500       |
+| member        | 2               | 811,640         |
+| casual        | 3               | 884,270         |
+| member        | 3               | 53,602          |
+| member        | 4               | 60,002          |
+| casual        | 4               | 59,672          |
+| member        | 5               | 227,652         |
+| casual        | 5               | 107,336         |
+| member        | 6               | 748,576         |
+| casual        | 6               | 317,655         |
+| casual        | 7               | 512,600         |
+| member        | 7               | 1,449,456       |
+| member        | 8               | 1,806,208       |
+| casual        | 8               | 788,931         |
+| member        | 9               | 1,204,355       |
+| casual        | 9               | 1,080,780       |
+| member        | 10              | 1,159,493       |
+| casual        | 10              | 1,595,868       |
+| member        | 11              | 1,390,488       |
+| casual        | 11              | 2,076,460       |
+| casual        | 12              | 2,372,439       |
+| member        | 12              | 1,571,765       |
+| member        | 13              | 1,538,764       |
+| casual        | 13              | 2,437,417       |
+| casual        | 14              | 2,533,929       |
+| member        | 14              | 1,616,663       |
+| casual        | 15              | 2,594,506       |
+| member        | 15              | 1,974,082       |
+| casual        | 16              | 2,728,103       |
+| member        | 16              | 2,739,253       |
+| casual        | 17              | 2,832,455       |
+| member        | 17              | 3,323,517       |
+| casual        | 18              | 2,405,145       |
+| member        | 18              | 2,592,766       |
+| member        |
+
+
+![230122935-8d0889c3-f0ff-43ce-94ab-393f2e230bee](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/4d613822-4077-4ef2-9fad-3756d3607274)
+
+
+Summary of findings:
+
+Analysis of the patterns reveals differences in riding behavior between members and casual riders throughout the day. Casual riders tend to have longer average ride lengths during the late morning to early evening hours, potentially indicating leisurely or recreational use, while members exhibit longer average ride lengths during peak commuting hours in the morning around 6 am TO 8 am, and evening around 4 pm to 8 pm.
 
 
 
-Months: When it comes to monthly trips, both casual and members exhibit comparable behavior, with more trips in the spring and summer and fewer in the winter. The gap between casuals and members is closest in the month of july in summmer.
-Days of Week: When the days of the week are compared, it is discovered that casual riders make more journeys on the weekends while members show a decline over the weekend in contrast to the other days of the week.
-Hours of the Day: The members shows 2 peaks throughout the day in terms of number of trips. One is early in the morning at around 6 am to 8 am and other is in the evening at around 4 pm to 8 pm while number of trips for casual riders increase consistently over the day till evening and then decrease afterwards.
 
 We can infer from the previous observations that member may be using bikes for commuting to and from the work in the week days while casual riders are using bikes throughout the day, more frequently over the weekends for leisure purposes. Both are most active in summer and spring.
 
