@@ -1,4 +1,4 @@
-PROJECT SUMMARY
+**PROJECT SUMMARY**
 
 I am assuming to be a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s 
 future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. 
@@ -6,10 +6,9 @@ From these insights, my team will design a new marketing strategy to convert cas
 so they must be backed up with compelling data insights and professional data visualizations.
 
 
-Background
+***Background***
 
-Cyclistic, a bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo 
-bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of
+Cyclistic is a bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of
 riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day.
 
 Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. What helped make these things possible was 
@@ -17,49 +16,52 @@ the flexibility of its pricing plans: single-ride passes, full-day passes, and a
 
 Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the pricing flexibility helps Cyclistic attract more customers,
 Moreno (the director of marketing and my manager) believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that
-targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program 
+targets all new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program 
 and have chosen Cyclistic for their mobility needs.
 
-Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the marketing analyst team needs to 
+Moreno has set a clear goal: ***Design marketing strategies aimed at converting casual riders into annual members***. To do that, however, the marketing analyst team needs to 
 better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends.
 
 
 
-QUESIONS TO ANSWER
+***Questions to answer***
 
 - How do annual members and casual riders use Cyclistic bikes differently?
 - Why would casual riders buy Cyclistic annual memberships?
 - How can Cyclistic use digital media to influence casual riders to become members?
 
-Project Deliverables:
+***Project Deliverables***
 
-Data Analysis Report: A comprehensive report analyzing the differences in behavior between annual members and casual riders based on Cyclistic historical bike trip data. This report will include insights into usage patterns, trip durations, popular routes, and frequency of bike usage for each user group.
+- *Data Analysis Report*: A comprehensive report analyzing the differences in behavior between annual members and casual riders based on Cyclistic historical bike trip data. This report will include insights into usage patterns, trip durations, popular routes, and frequency of bike usage for each user group.
 
-Professional Data Visualizations: A series of visually compelling data visualizations, including charts, graphs, and interactive dashboards, illustrating key findings from the analysis. These visualizations will provide stakeholders with clear and concise insights into the differences between annual members and casual riders, aiding in decision-making.
+- *Professional Data Visualizations*: A series of visually compelling data visualizations, including charts and graphs illustrating key findings from the analysis. These visualizations will provide stakeholders with clear and concise insights into the differences between annual members and casual riders, aiding in decision-making.
 
-Marketing Strategy Recommendations: A set of data-driven marketing strategy recommendations aimed at converting casual riders into annual members. These recommendations will be supported by the insights gained from the data analysis and will outline actionable steps for targeting casual riders through digital media and other marketing channels.
-
-Expected Results:
-
-Identification of Usage Patterns: The data analysis will reveal distinct usage patterns between annual members and casual riders, such as peak usage times, preferred bike types, and trip purposes. This will provide Cyclistic with valuable insights into the different needs and preferences of each user group.
-
-Insights into Motivation for Membership: By analyzing trip data and customer behavior, the project will uncover the reasons why casual riders may choose to purchase annual memberships. Understanding these motivations will enable Cyclistic to tailor marketing messages and incentives to effectively encourage conversion.
-
-Optimized Digital Media Strategies: The analysis will highlight opportunities for using digital media to influence casual riders to become members. By identifying the most effective channels, messaging, and targeting strategies, Cyclistic will be equipped to implement targeted digital marketing campaigns aimed at converting casual riders into annual members.
+- *Marketing Strategy Recommendations*: A set of data-driven marketing strategy recommendations aimed at converting casual riders into annual members. These recommendations will be supported by the insights gained from the data analysis and will outline actionable steps for targeting casual riders through digital media and other marketing channels.
 
 
+***Expected Results***
 
-DATA SOURCE
+- *Identification of Usage Patterns*: The data analysis will reveal distinct usage patterns between annual members and casual riders, such as peak usage times, preferred bike types, and trip purposes. This will provide Cyclistic with valuable insights into the different needs and preferences of each user group.
+
+- *Insights into Motivation for Membership*: By analyzing trip data and customer behavior, the project will uncover the reasons why casual riders may choose to purchase annual memberships. Understanding these motivations will enable Cyclistic to tailor marketing messages and incentives to effectively encourage conversion.
+
+- *Optimized Digital Media Strategies*: The analysis will highlight opportunities for using digital media to influence casual riders to become members. By identifying the most effective channels, messaging, and targeting strategies, Cyclistic will be equipped to implement targeted digital marketing campaigns aimed at converting casual riders into annual members.
+
+
+**DATA SOURCE**
 
 I will use Cyclistic’s historical trip data to analyze and identify trends from Jan 2022 to Dec 2022 which can be downloaded from https://divvy-tripdata.s3.amazonaws.com/index.html.
 
-DATA ANALYSIS
+
+**DATA ANALYSIS**
 
 I will be using SQL to explore, organize, clean, and analyze the dataset.
 
-Data Organization
+***Data Organization**
 
-There are 12 CSV files with the naming convention of YYYY-MM-divvy-tripdata and each file contains data for one month including;
+There are 11 CSV files with the naming convention of YYYY-MM-divvy-tripdata and each file contains data for one month.
+
+This table provides a clear overview of the column names and their corresponding descriptions, making it easier for users to understand the dataset structure.
 
 
 | Column Name       | Description                                                                   |
@@ -82,12 +84,10 @@ There are 12 CSV files with the naming convention of YYYY-MM-divvy-tripdata and 
 | day_of_ride       | Day of the week when the ride took place                                       |
 | hour_of_the_day   | Hour of the day when the ride started                                          |
 
-This table provides a clear overview of the column names and their corresponding descriptions, making it easier for users to understand the dataset structure.
 
-Data Combination
+***Data Combination***
 
-The 12 CSV files were successfully uploaded to the SQL database and merged into a single table, ```trip_data```,  consolidating the yearly data. Utilizing the ```CREATE TABLE``` function, 
-I created a table with 17 columns, specifying the data type that each column will hold to ensure accurate data representation and integrity within the database.
+The 11 CSV files were successfully uploaded to the SQL database and merged into a single table, ```trip_data```,  consolidating the yearly data. Utilizing the ```CREATE TABLE``` function, I created a table with 17 columns, specifying the data type that each column will hold to ensure accurate data representation and integrity within the database.
 
 ```CREATE TABLE trip_data(
 ride_id nvarchar(255),
@@ -106,7 +106,7 @@ member_casual nvarchar(255),
 )
 ```
 
-After the ```trip_data``` table was created, data from the 12 CSV files was inserted into it using the ```UNION ALL``` function. This function combines the results of multiple ```SELECT``` statements into a single result set, retaining all rows from each SELECT statement and resulting in a combined dataset containing 5,495,803.
+After the ```trip_data``` table was created, data from the 11 CSV files was inserted into it using the ```UNION ALL``` function. This function combines the results of multiple ```SELECT``` statements into a single result set, retaining all rows from each ```SELECT``` statement and resulting in a combined dataset containing 5,495,803.
 
 ```
 INSERT INTO trip_data 
@@ -137,12 +137,12 @@ UNION ALL
 Select* From ['202311-divvy-tripdata$']
 ```
 
-To resolve the inconsistency in data types between the ```station_station_id``` column stored as ```nvarchar(255)``` in our dataset and as ```float``` in tables 3 and 5, along with the
+To resolve the inconsistency in data types between the ```station_station_id``` column stored as ```nvarchar(255)``` in the dataset and as ```float``` in tables 3 and 5, along with the
 ```end_station_id``` column in table 5, which prevented unioning with the rest of the tables, I utilized the ```CAST``` function.
 
 The ```CAST``` function is used to convert an expression of one data type to another. In this context, I employed it to convert the float data type to ```nvarchar(255)```. 
 
-DATA EXPLORATION
+***Data Exploration***
 
 Before cleaning the data, I familiarized myself with the data to identify if there were any nulls and duplicates.
 
