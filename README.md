@@ -255,21 +255,21 @@ Where DATEDIFF(minute, started_at, ended_at) <= 1440 AND DATEDIFF(minute, starte
 The ```DATENAME``` function helped in extracting the ```day, month```, and ```hour of the day``` from the ```started_at``` timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
 
 
-- *Day*
+- * Day*
 
 ```
 Select started_at, DATENAME(weekday, started_at) as day_of_ride
 From trip_data
 ```
 
-- *Month*
+- * Month*
 
 ```
 Select started_at, DATENAME(month, started_at) as month_of_ride
 From trip_data
 ```
 
-*- Getting the hour of the day when the ride took place*
+- * Getting the hour of the day when the ride took place*
 
 ```
 Select started_at, DATENAME(hour, started_at) as hour_of_the_day
@@ -409,7 +409,7 @@ Order by rideable_type
 
 ***2. Total number of trips distributed by the months, days of the week, and hours of the day***
 
-- *Months*
+- * Months*
 
 This code provides a breakdown of the ```total number of rides for each month```, categorized by member type (member or casual), allowing for analysis of ridership trends over time.
 
@@ -456,7 +456,7 @@ Order by month_of_ride
 
 - Similarly, the transitional months of April, September, October, and November exhibit varying ridership levels as weather conditions shift between seasons.
 
-*Day of the week*
+- * Day of the week*
 
 This code provides a breakdown of the ```total number of rides for each day of the week```, categorized by member type (member or casual).
 
@@ -493,7 +493,7 @@ Order by day_of_ride
 
 - Additionally, midweek ridership remains relatively consistent, likely reflecting a mix of commuting and leisure activities.
 
-*Hour of the day*
+- *Hour of the day*
 
 This code provides insights into the ```total ride length in minutes for each hour of the day```, categorized by member type (member or casual)
 
@@ -557,7 +557,7 @@ Order by hour_of_the_day
 
 
 
-***3.Average trip duration for members and casuals per month, day of the week, and hour of the day***
+***3. Average trip duration for members and casuals per month, day of the week, and hour of the day***
 
 - *Day* 
 
@@ -710,7 +710,7 @@ To further understand the differences between casual and member riders, the loca
 
 Stations with the most trips are considered using filters to draw out the following conclusions.
 
-*- Starting station locations*
+- * Starting station locations*
 
 ```
 Select start_station_name, member_casual,COUNT(ride_id) as total_rides	
@@ -724,7 +724,7 @@ Order by total_rides DESC
 
 Casual riders have frequently started their trips from the stations in the vicinity of museums, parks, beaches, harbor points, and aquariums while members have begun their journeys from stations close to universities, residential areas, restaurants, hospitals, grocery stores, theatre, schools, banks, factories, train stations, parks and plazas.
 
-*- Ending station locations*
+- * Ending station locations*
 
 ```
 Select end_station_name, member_casual, COUNT(ride_id) as total_rides
