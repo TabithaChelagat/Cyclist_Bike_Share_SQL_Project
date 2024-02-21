@@ -57,9 +57,9 @@ I will use Cyclistic’s historical trip data to analyze and identify trends fro
 
 I will be using SQL to explore, organize, clean, and analyze the dataset.
 
-***Data Organization**
+**Data Organization**
 
-There are 11 CSV files with the naming convention of YYYY-MM-divvy-tripdata and each file contains data for one month.
+There are 11 CSV files with the naming convention of ```YYYY-MM-divvy-tripdata``` and each file contains data for one month.
 
 This table provides a clear overview of the column names and their corresponding descriptions, making it easier for users to understand the dataset structure.
 
@@ -144,9 +144,9 @@ The ```CAST``` function is used to convert an expression of one data type to ano
 
 ***Data Exploration***
 
-Before cleaning the data, I familiarized myself with the data to identify if there were any nulls and duplicates.
+Before cleaning the data, I familiarized myself with the data to identify if there were any nulls and duplicates and to get an insight of the data stored in each column.
 
-Checking for nulls
+*Checking for Nulls*
 
 In this code, the ```COUNT``` function is used to check for null values in each column of the ```trip_data``` table.
 ```
@@ -174,18 +174,18 @@ The following table shows the number of null values in each column.
 
 Note that the end_lat and the end_lng columns have the same number of missing values. This may be due to missing information in the same row.
 
-The null values of the different columns will be excluded from the new clean dataset that will be used for analysis.
+The null values that are in each column will be excluded from the new clean dataset that will be used for analysis.
 
 
-Checking for duplicates
+*Checking for Duplicates*
 
-As ride_id has no null values, let's use it to check for duplicates.
+As ride_id has no null values, I used it to check for duplicates.
 
 ```
 Select COUNT(ride_id)-COUNT(DISTINCT ride_id) as Duplicate_rows
 From trip_data
 ```
-```COUNT(ride_id)``` function returns the total number of rows in the ride_id column and ```COUNT(DISTINCT ride_id)``` returns the count of unique values in the ```ride_id``` column by eliminating duplicate values.
+```COUNT(ride_id)``` function returns the total number of rows in the ```ride_id``` column and ```COUNT(DISTINCT ride_id)``` returns the count of unique values in the ```ride_id``` column by eliminating duplicate values.
 
 | Duplicate_rows |
 |----------------|
@@ -193,7 +193,7 @@ From trip_data
 
 There are no duplicate rows in the data.
 
-Checking types of bikes
+*Checking Types of Bikes*
 
 There are 3 unique types of bikes(rideable_type) in our data.
 
@@ -203,9 +203,9 @@ There are 3 unique types of bikes(rideable_type) in our data.
 | classic_bike  |
 | docked_bike   |
 
-Trip duration 
+*Trip Duration* 
 
-Trips lasting under a minute are likely indicative of system errors or test rides rather than genuine user activity, providing little meaningful insight into user behavior. 
+- Trips lasting under a minute are likely indicative of system errors or test rides rather than genuine user activity, providing little meaningful insight into user behavior. 
 
 ```
 Select started_at, ended_at, DATEDIFF(minute, started_at, ended_at) as time_difference
@@ -215,7 +215,7 @@ Where DATEDIFF(minute, started_at, ended_at) < 1;
 
 There are a total of 86,315 trips that lasted for less than a minute in the data set that will be dropped when creating the clean table for analysis.
 
-On the other hand, trips lasting more than a day are outliers that are unlikely to represent typical usage patterns, skewing the analysis and potentially leading to inaccurate conclusions.
+- On the other hand, trips lasting more than a day are outliers that are unlikely to represent typical usage patterns, skewing the analysis and potentially leading to inaccurate conclusions.
 
 ```Select started_at, ended_at, DATEDIFF(minute, started_at, ended_at) as time_difference
 From trip_data
@@ -223,12 +223,11 @@ Where DATEDIFF(minute, started_at, ended_at) > 1440;
 ```
 There are a total of 6,154 trips that lasted more than a day in the data set that will be dropped when creating the clean table for analysis.
 
-The started_at and ended_at show the start and end time of the trip in YYYY-MM-DD hh:mm: ss UTC format. A new column, ```ride_length``, which will be in minutes will be created to find the
-total trip duration. 
+- The ```started_at``` and ```ended_at``` show the start and end time of the trip in ```YYYY-MM-DD hh:mm: ss UTC``` format. A new column, ```ride_length``, which will be in minutes will be created to find the total trip duration. 
 
 Other columns ```day_of_ride```, ``hour_of_the_ride``` and ````month_of_ride``` will also be helpful in the analysis of trips at different times of the year.
 
-Type of rider
+```Type of Rider```
 
 member_casual column has 2 unique values classifying the riders as either member or ccasual.
 
@@ -239,9 +238,12 @@ member_casual column has 2 unique values classifying the riders as either member
 
 
 
-DATA CLEANING
+***Data Cleaning***
 
-Getting the time difference excluding the ones > 24 hours and < 1 minute
+*Getting the time difference excluding the ones > 24 hours and < 1 minute*
+
+I utilized the ```DATEDIFF``` function to calculate the length of each ride in minutes by subtracting the ```started_at``` timestamp from the ```ended_at``` timestamp.
+Additionally, the ```WHERE``` clause filters the results to include only rides that lasted between 1 minute and 1440 minutes (24 hours), ensuring that only meaningful ride lengths are considered for analysis.
 
 ```
 Select started_at, ended_at, DATEDIFF(minute, started_at, ended_at) as ride_length
@@ -249,26 +251,26 @@ From trip_data
 Where DATEDIFF(minute, started_at, ended_at) <= 1440 AND DATEDIFF(minute, started_at, ended_at) >= 1;
 ```
 
-I utilized the ```DATEDIFF``` function to calculate the length of each ride in minutes by subtracting the started_at timestamp from the ended_at timestamp.
-Additionally, the ```WHERE``` clause filters the results to include only rides that lasted between 1 minute and 1440 minutes (24 hours), ensuring that only meaningful ride lengths are considered for analysis.
+*Getting the day and month when the trip was made*
 
-Getting the day and month when the trip was made
+The ```DATENAME``` function helped in extracting the day, month, and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
 
-Day
+
+- *Day*
 
 ```
 Select started_at, DATENAME(weekday, started_at) as day_of_ride
 From trip_data
 ```
 
-Month
+- *Month*
 
 ```
 Select started_at, DATENAME(month, started_at) as month_of_ride
 From trip_data
 ```
 
-Getting the hour of the day when the ride took place
+*Getting the hour of the day when the ride took place*
 
 ```
 Select started_at, DATENAME(hour, started_at) as hour_of_the_day
