@@ -86,7 +86,7 @@ This table provides a clear overview of the column names and their corresponding
 
 Data Combination
 
-The 12 CSV files were successfully uploaded to the SQL database and merged into a single table, trip_data,  consolidating the yearly data. Utilizing the ```CREATE TABLE``` function, 
+The 12 CSV files were successfully uploaded to the SQL database and merged into a single table, ```trip_data```,  consolidating the yearly data. Utilizing the ```CREATE TABLE``` function, 
 I created a table with 17 columns, specifying the data type that each column will hold to ensure accurate data representation and integrity within the database.
 
 ```CREATE TABLE trip_data(
@@ -106,8 +106,7 @@ member_casual nvarchar(255),
 )
 ```
 
-After the ```trip_data``` table was created, data from the 12 CSV files was inserted into it using the ```UNION ALL``` function. This function combines the results of multiple ```SELECT``` 
-statements into a single result set, retaining all rows from each SELECT statement and resulting in a combined dataset containing 5,495,803.
+After the ```trip_data``` table was created, data from the 12 CSV files was inserted into it using the ```UNION ALL``` function. This function combines the results of multiple ```SELECT``` statements into a single result set, retaining all rows from each SELECT statement and resulting in a combined dataset containing 5,495,803.
 
 ```
 INSERT INTO trip_data 
@@ -186,7 +185,7 @@ As ride_id has no null values, let's use it to check for duplicates.
 Select COUNT(ride_id)-COUNT(DISTINCT ride_id) as Duplicate_rows
 From trip_data
 ```
-COUNT(ride_id) function returns the total number of rows in the ride_id column and COUNT(DISTINCT ride_id) returns the count of unique values in the ride_id column by eliminating duplicate values.
+```COUNT(ride_id)``` function returns the total number of rows in the ride_id column and ```COUNT(DISTINCT ride_id)``` returns the count of unique values in the ```ride_id``` column by eliminating duplicate values.
 
 | Duplicate_rows |
 |----------------|
@@ -371,19 +370,37 @@ I now had clean data ready for data analysis.
 
 DATA ANALYSIS
 
-Analyze and Share
-SQL Query: Data Analysis
-Data Visualization: Tableau
-The data is stored appropriately and is now prepared for analysis. I queried multiple relevant tables for the analysis and visualized them in Tableau.
-The analysis question is: How do annual members and casual riders use Cyclistic bikes differently?
+For the first part of the analysis, the question that the data will be answering is;
+How do annual members and casual riders use Cyclistic bikes differently?
 
-First of all, member and casual riders are compared by the type of bikes they are using.
+Number of rides made by member and casual riders
+```
+Select rideable_type, member_casual, COUNT(member_casual) as riders
+From yearly_bike_data
+Group by rideable_type, member_casual
+Order by rideable_type
+```
+This code retrieves data from the ```yearly_bike_data``` table, counts the number of riders for each combination of ```rideable_type``` and ```member_casual```, and then organizes the results by rideable_type.
 
-image
+| rideable_type | member_casual | riders  |
+|---------------|---------------|---------|
+| classic_bike  | member        | 1526173 |
+| classic_bike  | casual        | 768586  |
+| docked_bike   | casual        | 66123   |
+| electric_bike | member        | 800675  |
+| electric_bike | casual        | 495713  |
 
-The members make 59.7% of the total while remaining 40.3% constitutes casual riders. Each bike type chart shows percentage from the total. Most used bike is classic bike followed by the electric bike. Docked bikes are used the least by only casual riders.
 
-Next the number of trips distributed by the months, days of the week and hours of the day are examined.
+Summary of the ridership data:
+
+The members make 59.7% of the total while the remaining 40.3% constitute casual riders. 
+Each bike-type chart shows a percentage of the total. 
+The most used bike is the classic bike followed by the electric bike. Docked bikes are used the least by casual riders.
+
+![226692931-ecd2eb32-ffce-481a-b3c2-a6c3b4f3ceb7](https://github.com/tabby1307/Cyclist_Bike_Share_Project/assets/112205355/f453dda2-d077-4a74-ac7f-6d6055c19a9a)
+
+
+Next, the number of trips distributed by the months, days of the week and hours of the day are examined.
 
 image image
 
