@@ -275,7 +275,7 @@ Getting the hour of the day when the ride took place
 Select started_at, DATENAME(hour, started_at) as hour_of_the_day
 From trip_data
 ```
-The ```DATENAME``` function helped in extracting the day, month and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
+The ```DATENAME``` function helped in extracting the day, month, and hour of the day from the started_at timestamp by specifying 'day', 'month', and 'hour' as the datepart parameter.
 
 
 Adding ride_length, day_of_ride, month_of_ride and hour_of_the_day columns to the trip_data table.
@@ -283,28 +283,93 @@ Adding ride_length, day_of_ride, month_of_ride and hour_of_the_day columns to th
 ride_length
 
 ```
+ALTER TABLE trip_data
+Add ride_length int;
+
+UPDATE trip_data
+Set ride_length = DATEDIFF(minute, started_at, ended_at)
 
 ```
 
 day_of_ride
 
 ```
+ALTER TABLE trip_data
+ADD day_of_ride nvarchar(255);
 
+UPDATE trip_data
+Set day_of_ride = DATENAME(weekday, started_at)
 ```
 
 month_of_ride
 
 ```
+ALTER TABLE trip_data
+ADD month_of_ride nvarchar(255);
 
+UPDATE trip_data
+Set month_of_ride = DATENAME(month, started_at)
 ```
 
 hour_of_the_day
 
 ```
+ALTER TABLE trip_data
+ADD hour_of_the_day int;
+
+UPDATE trip_data
+Set hour_of_the_day = DATENAME(hour, started_at)
 
 ```
 
+The ```ALTER TABLE``` function was used to add four new columns (ride_length, day_of_ride, month_of_ride, hour_of_the_day) to the trip_data table, specifying their data types. 
 
+Then, the ```UPDATE``` function was utilized to populate these new columns with data derived from existing columns.
+
+
+Creating a new table with clean data
+
+After formatting the data, I created a new table, yearly_bike_data, intended for analysis purposes. This table comprises clean data, including the new four columns, ride_length, day_of_ride, month_of_ride, hour_of_the_day, and excluding all null values, trips lasting more than a day, and trips lasting less than a minute. I adopt the practice of avoiding the deletion of data from the main table during project work to maintain data integrity. This ensures that critical information remains intact, allowing for further analysis without the risk of losing or altering essential columns in the main dataset.
+
+```
+DROP TABLE IF EXISTS yearly_bike_data
+
+CREATE TABLE yearly_bike_data(
+ride_id nvarchar(255),
+rideable_type nvarchar(255),
+started_at datetime,
+ended_at datetime,
+start_station_name nvarchar(255),
+start_station_id nvarchar(255),
+end_station_name nvarchar(255),
+end_station_id nvarchar(255),
+start_lat float,
+start_lng float,
+end_lat float,
+end_lng float,
+member_casual nvarchar(255),
+ride_length int,
+month_of_ride nvarchar(255),
+day_of_ride nvarchar(255),
+hour_of_the_day int
+)
+
+INSERT INTO yearly_bike_data 
+Select *
+From trip_data
+Where start_station_name IS NOT NULL AND 
+	  start_station_id IS NOT NULL AND
+	  end_station_name IS NOT NULL AND
+	  end_station_id IS NOT NULL AND
+	  end_lat IS NOT NULL AND
+	  end_lng IS NOT NULL AND
+	  ride_length >= 1 AND ride_length <=1440 
+```
+
+I now had clean data ready for data analysis.
+
+
+DATA ANALYSIS
 
 Analyze and Share
 SQL Query: Data Analysis
