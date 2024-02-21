@@ -772,7 +772,8 @@ Casual riders often begin their journeys near recreational sites such as museums
 
 In contrast, members tend to start their rides near universities, residential areas, restaurants, and commercial centers, suggesting a focus on commuting or accessing essential services and amenities.
 
-- ***Ending Location Preferences*** 
+- ***Ending Location Preferences***
+- 
 Similar to their starting location preferences, casual riders frequently end their trips near parks, museums, and recreational sites, reinforcing their preference for leisurely activities. 
 
 Conversely, members tend to end their rides near universities, residential areas, and commercial centers, indicating a return to familiar or essential destinations after commuting or running errands.
@@ -804,7 +805,7 @@ In this section, I answered the third objective question;
 ***How can Cyclistic use digital media to influence casual riders to become members?***
 
 
- - ***Targeted Social Media Campaigns** 
+ - ***Targeted Social Media Campaigns***
  
  Cyclistic can leverage digital media platforms like Facebook, Instagram, and Twitter to run targeted advertising campaigns.
  
