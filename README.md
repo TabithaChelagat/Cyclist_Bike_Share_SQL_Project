@@ -25,14 +25,41 @@ This project analyzes bike-sharing data to uncover usage patterns and user behav
 ## Dashboard Preview
 ![1_eA_J5Ma5WH9BJ22wvsGt_g](https://github.com/TabithaChelagat/Cyclist_Bike_Share_SQL_Project/assets/112205355/da20362e-f981-4e4d-9f48-736956df2c84)
 
+Your key findings and recommendations are insightful and can effectively guide strategies to enhance ridership and membership. Here's a refined and structured presentation of your key points and suggestions:
 
-## Key Findings
-- **Peak Usage Times:** Most rides occur during morning and evening rush hours.
-- **High-Demand Locations:** Central business districts and major transit hubs.
-- **User Patterns:** Members use the service more consistently, while casual users show higher activity on weekends.
+### Key Findings:
 
-## Actions / Recommendations
-- **Service Expansion:** Increase bike availability at high-demand locations during peak times.
-- **Membership Promotion:** Implement campaigns to convert casual users to members.
-- **Infrastructure Improvement:** Enhance bike lane infrastructure in high-traffic areas to support increased usage.
+1. **Membership Matters**:
+   - **Rides Contribution**: Annual members contribute significantly more rides (61.86%) compared to casual riders, highlighting the value of membership programs.
+
+2. **Ride Duration**:
+   - **Casual vs. Members**: Contrary to expectations, casual riders have a longer average ride duration (22.4 minutes) compared to members (11.9 minutes). This suggests casual riders might be using the bikes for leisure or longer trips.
+
+3. **Bike Preference**:
+   - **Classic Bikes**: Both member and casual riders overwhelmingly favor classic bikes, with over 2 million rides attributed to this type.
+
+4. **Riding Patterns**:
+   - **Weekend Warriors**: Casual riders exhibit a strong preference for weekend riding (Friday, Saturday, Sunday) with less usage on weekdays. This suggests they might be using the bikes for recreational purposes.
+
+### Recommendations:
+
+1. **Targeted Incentives for Casual Riders**:
+   - **Incentives for Membership**: Encourage casual riders to become members by offering incentives that address their longer ride duration. Possible strategies include:
+     - Tiered discounts based on ride time.
+     - Offering longer free ride periods with memberships.
+
+2. **Weekday Usage Promotion**:
+   - **Increase Weekday Rides**: To boost weekday usage, consider offering:
+     - Promotions or discounts for weekday rides.
+     - Targeting casual riders who might use the service for commuting.
+
+3. **Content and Partnerships**:
+   - **Promote Scenic Routes**: Partner with local businesses or create content that promotes scenic routes or interesting weekday destinations accessible by bike. This can incentivize casual riders to explore the service beyond weekends.
+
+4. **Station Analysis**:
+   - **Popular Stations**: Investigate the reasons behind the popularity of Streeter Dr & Grand Ave for casual riders and Kingsbury St & Kinzie St for members. Determine if these stations are near leisure areas or business hubs to guide:
+     - Future station placement.
+     - Targeted marketing strategies.
+
+
 
