@@ -35,14 +35,3 @@ This project analyzes bike-sharing data to uncover usage patterns and user behav
 - **Membership Promotion:** Implement campaigns to convert casual users to members.
 - **Infrastructure Improvement:** Enhance bike lane infrastructure in high-traffic areas to support increased usage.
 
----
-
-Feel free to adjust any details as needed, especially the dataset source, size, and the link to the dashboard image. If you have any specific details or additional information to include, let me know!                              
-
-
-**DATA SOURCE**
-
-I will use Cyclistic’s historical trip data to analyze and identify trends from Jan 2022 to Dec 2022 which can be downloaded from https://divvy-tripdata.s3.amazonaws.com/index.html.
-
-
-
