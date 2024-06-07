@@ -23,7 +23,8 @@ This project analyzes bike-sharing data to uncover usage patterns and user behav
 - **Features:** Ride ID, Start Time, End Time, Start Station, End Station, User Type, etc.
 
 ## Dashboard Preview
-![Dashboard Preview](link-to-dashboard-image)
+![1_eA_J5Ma5WH9BJ22wvsGt_g](https://github.com/TabithaChelagat/Cyclist_Bike_Share_SQL_Project/assets/112205355/da20362e-f981-4e4d-9f48-736956df2c84)
+
 
 ## Key Findings
 - **Peak Usage Times:** Most rides occur during morning and evening rush hours.
