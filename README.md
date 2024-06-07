@@ -1,5 +1,5 @@
 
-# Cyclist Bike Share Data Cleaning SQL Project
+# Cyclist Bike Share SQL Project
 
 ## Introduction
 This project analyzes bike-sharing data to uncover usage patterns and user behavior, providing insights to enhance service delivery. The analysis was conducted using SQL for data manipulation and querying and Tableau was used for data visualization. For detailed documentation, visit the [full project on Medium](https://medium.com/@chelagattabitha6/cyclist-bike-sharing-sql-project-ff4822d76836).
